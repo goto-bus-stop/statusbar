@@ -2,6 +2,7 @@ const throttle = require('@f/throttle')
 const Block = require('./Block')
 
 const defaultOptions = {
+  input: process.stdin,
   output: process.stdout
 }
 
@@ -11,6 +12,11 @@ function StatusBar (options = {}) {
   let previousContents
 
   options = Object.assign({}, defaultOptions, options)
+
+  // Input and output streams can be swapped out at runtime by assigning to
+  // the `input` and `output` properties.
+  bar.input = options.input
+  bar.output = options.output
 
   /**
    * Add a block to the status bar.
@@ -30,7 +36,7 @@ function StatusBar (options = {}) {
   const update = throttle(function update () {
     const next = get()
     if (next !== previousContents) {
-      options.output.write(next)
+      bar.output.write(next)
     }
     previousContents = next
   }, 16)
