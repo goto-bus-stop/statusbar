@@ -1,6 +1,6 @@
 {
   "name": "statusbar",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Status bar for dzen etc.",
   "main": "index.js",
   "repository": "goto-bus-stop/statusbar",

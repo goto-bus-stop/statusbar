@@ -1,6 +1,6 @@
 {
   "name": "@statusbar/block",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Create blocks for Statusbar.",
   "main": "index.js",
   "repository": "goto-bus-stop/statusbar",
