@@ -6,6 +6,10 @@ const defaultOptions = {
   align: 'r'
 }
 
+function padding (px, text) {
+  return `^p(+${px})${text}^p(+${px})`
+}
+
 module.exports = (options = {}) => (bar) => {
   options = Object.assign({}, defaultOptions, options)
 
@@ -13,6 +17,8 @@ module.exports = (options = {}) => (bar) => {
     '-fn', options.font,
     '-ta', options.align
   ])
+
+  const separator = `^p(;_TOP)^bg(#666666)^r(1x0)^bg()`
 
   /**
    * Process an incoming action.
@@ -48,7 +54,7 @@ module.exports = (options = {}) => (bar) => {
    * @return {string}
    */
   function serializeBlock (block) {
-    let result = block.full_text
+    let result = padding(4, block.full_text)
 
     // Style
     if (block.color) result = `^fg(${block.color})${result}^fg()`
@@ -67,7 +73,7 @@ module.exports = (options = {}) => (bar) => {
    * @param {Array<Object>} chunk A status bar.
    */
   function onoutput (chunk) {
-    const text = chunk.map(serializeBlock).join(' | ')
+    const text = chunk.map(serializeBlock).join(separator)
 
     dz.stdin.write(text + '\n')
   }
