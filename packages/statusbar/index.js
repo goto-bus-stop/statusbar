@@ -1,13 +1,23 @@
+const PassThrough = require('stream').PassThrough
+const Writable = require('stream').Writable
+const EventEmitter = require('events').EventEmitter
 const throttle = require('@f/throttle')
 const Block = require('./Block')
+const defaultStreams = require('./defaultStreams')
 
 const defaultOptions = {
-  input: process.stdin,
-  output: process.stdout
+  input: null,
+  output: null
+}
+
+// Map X11 button IDs to event names.
+const eventNames = {
+  1: 'click',
+  2: 'rightclick'
 }
 
 function StatusBar (options = {}) {
-  const bar = {}
+  const bar = new EventEmitter()
   const blocks = []
 
   let previousContents
@@ -15,11 +25,25 @@ function StatusBar (options = {}) {
 
   options = Object.assign({}, defaultOptions, options)
 
-  // Input and output streams can be swapped out at runtime by assigning to
-  // the `input` and `output` properties.
-  bar.input = options.input
-  bar.output = options.output
+  const input = new Writable({
+    objectMode: true,
+    write (chunk, enc, callback) {
+      const block = getBlock(chunk.instance)
+      const event = eventNames[chunk.button]
+      block.emit(event)
+      callback()
+    }
+  })
 
+  // TODO make this a Readable only?
+  const output = options.output || new PassThrough({ objectMode: true })
+
+  bar.input = input
+  bar.output = output
+
+  /**
+   * Add a plugin.
+   */
   function use (fn) {
     fn(bar)
 
@@ -32,8 +56,11 @@ function StatusBar (options = {}) {
    * @param {*} create A function that initializes the block.
    */
   function add (name, create) {
-    const block = Block(create, bar)
-    block.id = `${blockId++}`
+    const block = Block({
+      name: name,
+      id: `${blockId++}`,
+      create: create
+    }, bar)
     blocks.push(block)
 
     return block
@@ -54,7 +81,16 @@ function StatusBar (options = {}) {
    * Get the contents of the status bar.
    */
   function get () {
-    return blocks.map((bl) => bl.get()).join(' | ') + '\n'
+    return blocks.map((bl) => bl.get())
+  }
+
+  /**
+   * Get a block instance by ID.
+   *
+   * @param {string} id
+   */
+  function getBlock (id) {
+    return blocks.find((bl) => bl.id === id)
   }
 
   /**
@@ -76,6 +112,7 @@ function StatusBar (options = {}) {
     add,
     update,
     get,
+    getBlock,
     dispose
   })
 }

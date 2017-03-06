@@ -1,4 +1,10 @@
-function Block (create, bar) {
+const EventEmitter = require('events').EventEmitter
+
+function Block ({ name, id, create }, bar) {
+  const block = new EventEmitter()
+  block.name = name
+  block.id = id
+
   let currentValue
   let disposer
 
@@ -8,18 +14,22 @@ function Block (create, bar) {
   }
 
   function get () {
-    return currentValue
+    return {
+      name,
+      instance: id,
+      full_text: currentValue
+    }
   }
 
   function dispose () {
     if (disposer) disposer()
   }
 
-  const block = {
+  Object.assign(block, {
     update,
     get,
     dispose
-  }
+  })
 
   disposer = create(block)
 
