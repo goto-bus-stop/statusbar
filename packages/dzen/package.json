@@ -1,0 +1,12 @@
+{
+  "name": "@statusbar/dzen",
+  "version": "0.0.0",
+  "description": "dzen2 integration for Statusbar.",
+  "main": "index.js",
+  "repository": "goto-bus-stop/statusbar",
+  "author": "Renée Kooi <renee@kooi.me>",
+  "license": "MIT",
+  "dependencies": {
+    "split": "^1.0.0"
+  }
+}
