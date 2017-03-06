@@ -1,0 +1,12 @@
+{
+  "name": "@statusbar/volume",
+  "version": "0.0.0",
+  "description": "Volume display and control for Statusbar.",
+  "main": "index.js",
+  "repository": "goto-bus-stop/statusbar",
+  "author": "Renée Kooi <renee@kooi.me>",
+  "license": "MIT",
+  "dependencies": {
+    "loudness": "^0.2.2"
+  }
+}

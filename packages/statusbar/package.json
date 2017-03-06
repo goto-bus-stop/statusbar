@@ -1,0 +1,13 @@
+{
+  "name": "statusbar",
+  "version": "0.0.0",
+  "description": "Status bar for dzen etc.",
+  "main": "index.js",
+  "repository": "goto-bus-stop/statusbar",
+  "author": "Renée Kooi <renee@kooi.me>",
+  "license": "MIT",
+  "bin": "./cli.js",
+  "dependencies": {
+    "@f/throttle": "^1.0.0"
+  }
+}

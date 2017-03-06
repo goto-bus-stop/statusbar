@@ -1,0 +1,9 @@
+{
+  "name": "@statusbar/date",
+  "version": "0.0.0",
+  "description": "Date block for Statusbar.",
+  "main": "index.js",
+  "repository": "goto-bus-stop/statusbar",
+  "author": "Renée Kooi <renee@kooi.me>",
+  "license": "MIT"
+}
