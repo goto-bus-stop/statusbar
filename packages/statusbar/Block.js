@@ -4,6 +4,8 @@ function Block ({ name, id, create }, bar) {
   const block = new EventEmitter()
   block.name = name
   block.id = id
+  block.background = null
+  block.color = null
 
   let currentValue
   let disposer
@@ -14,11 +16,18 @@ function Block ({ name, id, create }, bar) {
   }
 
   function get () {
-    return {
+    const result = {
       name,
       instance: id,
-      full_text: currentValue
+      full_text: currentValue,
+      _onclick: block.listenerCount('click') > 0,
+      _onrightclick: block.listenerCount('rightclick') > 0,
     }
+
+    if (block.background) result.background = block.background
+    if (block.color) result.color = block.color
+
+    return result
   }
 
   function dispose () {
