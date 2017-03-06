@@ -3,21 +3,23 @@ const bytes = require('prettier-bytes')
 
 const defaultOptions = {}
 
-module.exports = (options = {}) => (block) => {
+module.exports = (options = {}) => (bar) => {
   if (typeof options === 'string') {
     options = { fs: options }
   }
 
   options = Object.assign({}, defaultOptions, options)
 
-  function update () {
-    df.fs(options.fs).then((fs) => {
-      block.update(`${fs.mountpoint} ${bytes(fs.available)}`)
-    })
-  }
+  bar.add('diskusage', (block) => {
+    function update () {
+      df.fs(options.fs).then((fs) => {
+        block.update(`${fs.mountpoint} ${bytes(fs.available)}`)
+      })
+    }
 
-  update()
+    update()
 
-  let interval = setInterval(update, 1000)
-  return () => clearInterval(interval)
+    let interval = setInterval(update, 1000)
+    return () => clearInterval(interval)
+  })
 }

@@ -7,23 +7,25 @@ const defaultOptions = {
   loud: '🔊'
 }
 
-module.exports = (options = {}) => (block) => {
+module.exports = (options = {}) => (bar) => {
   options = Object.assign({}, defaultOptions, options)
 
-  function update () {
-    loudness.getVolume((err, volume) => {
-      if (err) return
+  bar.add('volume', (block) => {
+    function update () {
+      loudness.getVolume((err, volume) => {
+        if (err) return
 
-      let icon = options.mute
-      if (volume > 0) icon = options.low
-      if (volume > 30) icon = options.mid
-      if (volume > 66) icon = options.loud
-      block.update(`${icon} ${volume}%`)
-    })
-  }
+        let icon = options.mute
+        if (volume > 0) icon = options.low
+        if (volume > 30) icon = options.mid
+        if (volume > 66) icon = options.loud
+        block.update(`${icon} ${volume}%`)
+      })
+    }
 
-  update()
+    update()
 
-  let interval = setInterval(update, 1000)
-  return () => clearInterval(interval)
+    let interval = setInterval(update, 1000)
+    return () => clearInterval(interval)
+  })
 }

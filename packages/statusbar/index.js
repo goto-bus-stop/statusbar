@@ -9,7 +9,9 @@ const defaultOptions = {
 function StatusBar (options = {}) {
   const bar = {}
   const blocks = []
+
   let previousContents
+  let blockId = 0
 
   options = Object.assign({}, defaultOptions, options)
 
@@ -18,16 +20,23 @@ function StatusBar (options = {}) {
   bar.input = options.input
   bar.output = options.output
 
+  function use (fn) {
+    fn(bar)
+
+    return bar
+  }
+
   /**
    * Add a block to the status bar.
    *
    * @param {*} create A function that initializes the block.
    */
-  function use (create) {
+  function add (name, create) {
     const block = Block(create, bar)
+    block.id = `${blockId++}`
     blocks.push(block)
 
-    return bar
+    return block
   }
 
   /**
@@ -64,6 +73,7 @@ function StatusBar (options = {}) {
 
   return Object.assign(bar, {
     use,
+    add,
     update,
     get,
     dispose

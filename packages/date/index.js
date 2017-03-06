@@ -1,14 +1,16 @@
 const defaultOptions = {}
 
-module.exports = (options = {}) => (block) => {
+module.exports = (options = {}) => (bar) => {
   options = Object.assign({}, defaultOptions, options)
 
-  function update () {
-    block.update(new Date().toLocaleString())
-  }
+  bar.add('date', (block) => {
+    function update () {
+      block.update(new Date().toLocaleString())
+    }
 
-  update()
+    update()
 
-  let interval = setInterval(update, 1000)
-  return () => clearInterval(interval)
+    let interval = setInterval(update, 1000)
+    return () => clearInterval(interval)
+  })
 }
