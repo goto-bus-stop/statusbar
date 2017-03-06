@@ -1,0 +1,12 @@
+{
+  "name": "@statusbar/battery",
+  "version": "0.0.0",
+  "description": "Battery level block for Statusbar.",
+  "main": "index.js",
+  "repository": "goto-bus-stop/statusbar",
+  "author": "Renée Kooi <renee@kooi.me>",
+  "license": "MIT",
+  "dependencies": {
+    "linux-battery": "^3.0.1"
+  }
+}
