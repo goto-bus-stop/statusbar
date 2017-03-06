@@ -5,5 +5,8 @@
   "main": "index.js",
   "repository": "goto-bus-stop/statusbar",
   "author": "Renée Kooi <renee@kooi.me>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "fecha": "^2.3.0"
+  }
 }
