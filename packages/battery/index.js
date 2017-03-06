@@ -1,23 +1,23 @@
+const block = require('@statusbar/block')
 // Sorry, not-linux!
 const getBattery = require('linux-battery')
 
-module.exports = () => (bar) => {
-  bar.add('battery', (block) => {
-    block.update('🔋')
+module.exports = block({
+  name: 'battery',
 
-    function update () {
-      getBattery().then((list) => list[0]).then((battery) => {
-        if (battery.state === 'charging') {
-          block.update(`🗲 ${battery.percentage} ${battery.timeToFull}`)
-        } else {
-          block.update(`🔋 ${battery.percentage} ${battery.timeToEmpty}`)
-        }
-      })
-    }
+  interval: 5000,
 
-    update()
+  init (b, options) {
+    b.update('🔋')
+  },
 
-    let interval = setInterval(update, 5000)
-    return () => clearInterval(interval)
-  })
-}
+  run (b, options) {
+    getBattery().then((list) => list[0]).then((battery) => {
+      if (battery.state === 'charging') {
+        b.update(`🗲 ${battery.percentage} ${battery.timeToFull}`)
+      } else {
+        b.update(`🔋 ${battery.percentage} ${battery.timeToEmpty}`)
+      }
+    })
+  }
+})

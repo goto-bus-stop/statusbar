@@ -7,6 +7,7 @@
   "author": "Renée Kooi <renee@kooi.me>",
   "license": "MIT",
   "dependencies": {
+    "@statusbar/block": "0.0.0",
     "loudness": "^0.2.2"
   }
 }

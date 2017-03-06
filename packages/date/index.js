@@ -1,24 +1,20 @@
 const format = require('fecha').format
+const block = require('@statusbar/block')
 
-const defaultOptions = {
-  format: 'YYYY-MM-DD hh:mm:ss'
-}
-
-module.exports = (options = {}) => (bar) => {
-  if (typeof options === 'string') {
-    options = { format: options }
-  }
-
-  options = Object.assign({}, defaultOptions, options)
-
-  bar.add('date', (block) => {
-    function update () {
-      block.update(format(new Date(), options.format))
+module.exports = block({
+  name: 'date',
+  interval: 1000,
+  options (options) {
+    if (typeof options === 'string') {
+      options = { format: options }
     }
 
-    update()
+    return Object.assign({
+      format: 'YYYY-MM-DD hh:mm:ss'
+    }, options)
+  },
 
-    let interval = setInterval(update, 1000)
-    return () => clearInterval(interval)
-  })
-}
+  run (b, options) {
+    b.update(format(new Date(), options.format))
+  }
+})
