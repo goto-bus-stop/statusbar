@@ -7,7 +7,8 @@ const defaultOptions = {
 }
 
 function padding (px, text) {
-  return `^p(+${px})${text}^p(+${px})`
+  // Use rectangles for padding so the background colour continues.
+  return `^r(${px}x0)${text}^r(+${px}x0)`
 }
 
 module.exports = (options = {}) => (bar) => {
