@@ -1,4 +1,21 @@
 const EventEmitter = require('events').EventEmitter
+const colorNames = require('color-name')
+
+function hexByte (n) {
+  return n > 0x0F ? n.toString(16) : `0${n.toString(16)}`
+}
+function hex (color) {
+  // rebeccapurple
+  if (colorNames[color]) {
+    return '#' + colorNames[color].map(hexByte).join('')
+  }
+  // #ABC → #AABBCC
+  if (/^#[0-9A-F]{3}$/i.test(color)) {
+    return '#' + color[1] + color[1] + color[2] + color[2] + color[3] + color[3]
+  }
+  // #abcdef, hopefully
+  return color
+}
 
 function Block ({ name, id, create }, bar) {
   const block = new EventEmitter()
@@ -24,8 +41,8 @@ function Block ({ name, id, create }, bar) {
       _onrightclick: block.listenerCount('rightclick') > 0,
     }
 
-    if (block.background) result.background = block.background
-    if (block.color) result.color = block.color
+    if (block.background) result.background = hex(block.background)
+    if (block.color) result.color = hex(block.color)
 
     return result
   }
