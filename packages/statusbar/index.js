@@ -3,7 +3,6 @@ const Writable = require('stream').Writable
 const EventEmitter = require('events').EventEmitter
 const throttle = require('@f/throttle')
 const Block = require('./Block')
-const defaultStreams = require('./defaultStreams')
 
 const defaultOptions = {
   input: null,
