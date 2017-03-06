@@ -1,0 +1,9 @@
+{
+  "name": "@statusbar/block",
+  "version": "0.0.0",
+  "description": "Create blocks for Statusbar.",
+  "main": "index.js",
+  "repository": "goto-bus-stop/statusbar",
+  "author": "Renée Kooi <renee@kooi.me>",
+  "license": "MIT"
+}
