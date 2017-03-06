@@ -1,12 +1,18 @@
 const spawn = require('child_process').spawn
 const split = require('split')
 
-const defaultOptions = {}
+const defaultOptions = {
+  font: 'monospace',
+  align: 'r'
+}
 
 module.exports = (options = {}) => (bar) => {
   options = Object.assign({}, defaultOptions, options)
 
-  const dz = spawn('dzen2', ['-fn', 'monospace'])
+  const dz = spawn('dzen2', [
+    '-fn', options.font,
+    '-ta', options.align
+  ])
 
   /**
    * Process an incoming action.
