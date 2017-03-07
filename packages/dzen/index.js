@@ -14,10 +14,29 @@ function padding (px, text) {
 module.exports = (options = {}) => (bar) => {
   options = Object.assign({}, defaultOptions, options)
 
-  const dz = spawn('dzen2', [
+  // Base options.
+  const args = [
     '-fn', options.font,
     '-ta', options.align
-  ])
+  ]
+
+  // Optional options.
+  const extras = {
+    fg: options.color,
+    bg: options.background,
+    x: options.x,
+    y: options.y,
+    h: options.height,
+    w: options.width
+  }
+
+  Object.keys(extras).forEach((name) => {
+    if (extras[name] != null) {
+      args.push(`-${name}`, String(extras[name]))
+    }
+  })
+
+  const dz = spawn('dzen2', args)
 
   const separator = `^p(;_TOP)^bg(#666666)^r(1x0)^bg()`
 
