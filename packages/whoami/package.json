@@ -1,0 +1,13 @@
+{
+  "name": "@statusbar/whoami",
+  "version": "0.0.0",
+  "description": "A block showing the current user's name for Statusbar.",
+  "main": "index.js",
+  "repository": "goto-bus-stop/statusbar",
+  "author": "Renée Kooi <renee@kooi.me>",
+  "license": "MIT",
+  "dependencies": {
+    "@statusbar/block": "^0.0.1",
+    "username": "^2.3.0"
+  }
+}
