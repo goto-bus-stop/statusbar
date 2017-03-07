@@ -1,13 +1,10 @@
-const PassThrough = require('stream').PassThrough
+const Readable = require('stream').Readable
 const Writable = require('stream').Writable
 const EventEmitter = require('events').EventEmitter
 const throttle = require('@f/throttle')
 const Block = require('./Block')
 
-const defaultOptions = {
-  input: null,
-  output: null
-}
+const defaultOptions = {}
 
 // Map X11 button IDs to event names.
 const eventNames = {
@@ -34,8 +31,10 @@ function StatusBar (options = {}) {
     }
   })
 
-  // TODO make this a Readable only?
-  const output = options.output || new PassThrough({ objectMode: true })
+  const output = new Readable({
+    objectMode: true,
+    read () { /* Not doing anything… */ }
+  })
 
   bar.input = input
   bar.output = output
@@ -71,7 +70,7 @@ function StatusBar (options = {}) {
   const update = throttle(function update () {
     const next = get()
     if (next !== previousContents) {
-      bar.output.write(next)
+      bar.output.push(next)
     }
     previousContents = next
   }, 16)
