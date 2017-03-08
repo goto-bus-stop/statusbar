@@ -3,6 +3,14 @@ const coreOptions = [
   'background'
 ]
 
+const events = [
+  'click',
+  'rightclick',
+  'middleclick',
+  'mouseup',
+  'mousedown',
+]
+
 module.exports = function createBlock (descr) {
   return (options = {}) => (bar) => {
     if (typeof descr.options === 'function') {
@@ -16,6 +24,10 @@ module.exports = function createBlock (descr) {
 
       coreOptions.forEach((name) => {
         if (name in options) b[name] = options[name]
+      })
+
+      events.forEach((name) => {
+        if (options[`on${name}`]) b.on(name, options[`on${name}`])
       })
 
       if (descr.init) {
