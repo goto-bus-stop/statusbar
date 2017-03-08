@@ -101,9 +101,9 @@ function StatusBar (options = {}) {
     blocks.forEach((block) => {
       block.dispose()
     })
-    blocks.length = 1
+    blocks.length = 0
 
-    process.off('beforeExit', dispose)
+    process.removeListener('beforeExit', dispose)
   }
 
   process.on('beforeExit', dispose)
