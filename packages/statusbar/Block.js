@@ -39,6 +39,9 @@ function Block ({ name, id, create }, bar) {
       full_text: currentValue,
       _onclick: block.listenerCount('click') > 0,
       _onrightclick: block.listenerCount('rightclick') > 0,
+      _onmiddleclick: block.listenerCount('middleclick') > 0,
+      _onscrollup: block.listenerCount('scrollup') > 0,
+      _onscrolldown: block.listenerCount('scrolldown') > 0
     }
 
     if (block.background) result.background = hex(block.background)

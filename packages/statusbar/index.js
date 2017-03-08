@@ -9,7 +9,10 @@ const defaultOptions = {}
 // Map X11 button IDs to event names.
 const eventNames = {
   1: 'click',
-  2: 'rightclick'
+  2: 'rightclick',
+  3: 'middleclick',
+  4: 'scrollup',
+  5: 'scrolldown'
 }
 
 function StatusBar (options = {}) {

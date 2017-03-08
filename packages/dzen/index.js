@@ -83,6 +83,9 @@ module.exports = (options = {}) => (bar) => {
     // Events
     if (block._onclick) result = addAction(1, block, result)
     if (block._onrightclick) result = addAction(2, block, result)
+    if (block._onmiddleclick) result = addAction(3, block, result)
+    if (block._onscrollup) result = addAction(4, block, result)
+    if (block._onscrolldown) result = addAction(5, block, result)
 
     return result
   }
