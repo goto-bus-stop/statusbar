@@ -103,6 +103,8 @@ function StatusBar (options = {}) {
     })
     blocks.length = 0
 
+    bar.emit('dispose')
+
     process.removeListener('beforeExit', dispose)
   }
 

@@ -103,4 +103,8 @@ module.exports = (options = {}) => (bar) => {
 
   bar.output.on('data', onoutput)
   dz.stdout.pipe(split()).on('data', oninput)
+
+  bar.on('dispose', () => {
+    dz.kill('SIGTERM')
+  })
 }
