@@ -1,0 +1,8 @@
+{
+  "name": "example",
+  "private": true,
+  "scripts": {
+    "start": "../packages/statusbar/cli.js ./index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
