@@ -1,0 +1,14 @@
+{
+  "name": "@statusbar/terminal",
+  "version": "0.0.0",
+  "description": "Output a Statusbar line to a terminal.",
+  "main": "index.js",
+  "repository": "goto-bus-stop/statusbar",
+  "author": "Renée Kooi <renee@kooi.me>",
+  "license": "MIT",
+  "dependencies": {
+    "ansi-256-colors": "^1.1.0",
+    "ansi-diff-stream": "^1.2.0",
+    "map-stream": "^0.0.6"
+  }
+}
