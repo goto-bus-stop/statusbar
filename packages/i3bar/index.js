@@ -1,4 +1,4 @@
-const split = require('split')
+const json = require('JSONStream')
 
 const defaultOptions = {
   input: process.stdin,
@@ -12,19 +12,16 @@ module.exports = (options = {}) => (bar) => {
   options.output.write(JSON.stringify({
     version: 1,
     click_events: true
-  }) + '\n[\n')
+  }) + '\n')
 
   // Statusbar uses the i3bar protocol internally, so we can just pass inputs
   // and outputs through.
 
-  function oninput (chunk) {
-    bar.input.write(JSON.parse(chunk))
-  }
+  bar.output
+    .pipe(json.stringify())
+    .pipe(options.output)
 
-  function onoutput (chunk, encoding) {
-    options.output.write(JSON.stringify(chunk) + ',\n')
-  }
-
-  bar.output.on('data', onoutput)
-  options.input.pipe(split()).on('data', oninput)
+  options.input
+    .pipe(json.parse())
+    .pipe(bar.input)
 }

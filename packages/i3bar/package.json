@@ -7,6 +7,6 @@
   "author": "Renée Kooi <renee@kooi.me>",
   "license": "MIT",
   "dependencies": {
-    "split": "^1.0.0"
+    "JSONStream": "^1.3.1"
   }
 }
