@@ -1,6 +1,6 @@
 {
   "name": "@statusbar/dzen",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "dzen2 integration for Statusbar.",
   "main": "index.js",
   "repository": "goto-bus-stop/statusbar",

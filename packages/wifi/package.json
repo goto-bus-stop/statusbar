@@ -1,13 +1,13 @@
 {
   "name": "@statusbar/wifi",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "WiFi status block for Statusbar.",
   "main": "index.js",
   "repository": "goto-bus-stop/statusbar",
   "author": "Renée Kooi <renee@kooi.me>",
   "license": "MIT",
   "dependencies": {
-    "@statusbar/block": "^0.0.1",
+    "@statusbar/block": "^0.0.2",
     "wifi-name": "^3.0.0"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@statusbar/terminal",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Output a Statusbar line to a terminal.",
   "main": "index.js",
   "repository": "goto-bus-stop/statusbar",

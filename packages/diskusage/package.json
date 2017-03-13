@@ -1,6 +1,6 @@
 {
   "name": "@statusbar/diskusage",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Disk usage block for Statusbar.",
   "main": "index.js",
   "repository": "goto-bus-stop/statusbar",
@@ -8,7 +8,7 @@
   "license": "MIT",
   "dependencies": {
     "@sindresorhus/df": "^2.1.0",
-    "@statusbar/block": "^0.0.1",
+    "@statusbar/block": "^0.0.2",
     "prettier-bytes": "^1.0.3"
   }
 }
