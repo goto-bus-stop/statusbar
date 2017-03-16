@@ -15,7 +15,7 @@ module.exports = block({
 
   run (b, options) {
     df.fs(options.fs).then((fs) => {
-      b.update(`${fs.mountpoint} ${bytes(fs.available)}`)
+      b.update(`${options.label || fs.mountpoint} ${bytes(fs.available)}`)
     })
   }
 })
