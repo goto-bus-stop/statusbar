@@ -2,6 +2,9 @@
 
 A modular status bar for dzen, i3bar, etc. in Node.js.
 
+A statusbar can contain multiple blocks, normally each in a different node module.
+Blocks expose their contents using JSON objects following the [i3bar protocol](https://github.com/i3/i3/blob/master/docs/i3bar-protocol).
+
 ## Packages
 
 | Package | NPM | Version |
