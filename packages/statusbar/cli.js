@@ -10,4 +10,6 @@ if (!config) {
   process.exit(1)
 }
 
+global.bar = require('.')()
+
 require(path.resolve(process.cwd(), config))
