@@ -9,6 +9,7 @@
   "bin": "./cli.js",
   "dependencies": {
     "@f/throttle": "^1.0.0",
-    "color-name": "^1.1.1"
+    "color-name": "^1.1.1",
+    "xdg-basedir": "^3.0.0"
   }
 }
