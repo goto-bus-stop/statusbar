@@ -1,9 +1,10 @@
 const spawn = require('child_process').spawn
 const split = require('split')
+const dzen2 = require('dzen2')
 
 const defaultOptions = {
   font: 'monospace',
-  align: 'r'
+  align: 'right'
 }
 
 function padding (px, text) {
@@ -14,29 +15,11 @@ function padding (px, text) {
 module.exports = (options = {}) => (bar) => {
   options = Object.assign({}, defaultOptions, options)
 
-  // Base options.
-  const args = [
-    '-fn', options.font,
-    '-ta', options.align
-  ]
-
-  // Optional options.
-  const extras = {
-    fg: options.color,
-    bg: options.background,
-    x: options.x,
-    y: options.y,
-    h: options.height,
-    w: options.width
+  if (options.color) {
+    options.foreground = options.color
   }
 
-  Object.keys(extras).forEach((name) => {
-    if (extras[name] != null) {
-      args.push(`-${name}`, String(extras[name]))
-    }
-  })
-
-  const dz = spawn('dzen2', args)
+  const dz = dzen2(Object.assign(options))
 
   const separator = `^p(;_TOP)^bg(#666666)^r(1x0)^bg()`
 
@@ -98,13 +81,13 @@ module.exports = (options = {}) => (bar) => {
   function onoutput (chunk) {
     const text = chunk.map(serializeBlock).join(separator)
 
-    dz.stdin.write(text + '\n')
+    dz.write(text)
   }
 
   bar.output.on('data', onoutput)
-  dz.stdout.pipe(split()).on('data', oninput)
+  dz.pipe(split()).on('data', oninput)
 
   bar.on('dispose', () => {
-    dz.kill('SIGTERM')
+    dz.process.kill('SIGTERM')
   })
 }
