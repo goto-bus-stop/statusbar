@@ -1,5 +1,5 @@
 const spawn = require('child_process').spawn
-const split = require('split')
+const split = require('split2')
 const dzen2 = require('dzen2')
 
 const defaultOptions = {

@@ -8,6 +8,6 @@
   "license": "MIT",
   "dependencies": {
     "dzen2": "^1.0.0",
-    "split": "^1.0.0"
+    "split2": "^2.1.1"
   }
 }
