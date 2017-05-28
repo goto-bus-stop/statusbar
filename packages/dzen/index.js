@@ -88,6 +88,6 @@ module.exports = (options = {}) => (bar) => {
   dz.pipe(split()).on('data', oninput)
 
   bar.on('dispose', () => {
-    dz.process.kill('SIGTERM')
+    dz.exit()
   })
 }

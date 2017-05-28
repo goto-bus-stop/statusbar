@@ -12,8 +12,8 @@ const wifi = require('../packages/wifi')
 bar.use(text({
   background: 'white',
   color: 'red',
-  text: 'Shutdown',
-  onclick: () => process.exit(0)
+  text: 'Quit',
+  onclick: () => bar.dispose()
 }))
 
 bar.use(wifi())
