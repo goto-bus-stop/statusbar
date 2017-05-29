@@ -1,0 +1,12 @@
+{
+  "name": "@statusbar/lemonbar",
+  "version": "0.0.0",
+  "description": "lemonbar integration for Statusbar.",
+  "main": "index.js",
+  "repository": "goto-bus-stop/statusbar",
+  "author": "Renée Kooi <renee@kooi.me>",
+  "license": "MIT",
+  "dependencies": {
+    "split2": "^2.1.1"
+  }
+}
