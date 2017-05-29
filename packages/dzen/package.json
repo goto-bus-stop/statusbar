@@ -7,7 +7,9 @@
   "author": "Renée Kooi <renee@kooi.me>",
   "license": "MIT",
   "dependencies": {
+    "duplexify": "^3.5.0",
     "dzen2": "^1.0.0",
-    "split2": "^2.1.1"
+    "split2": "^2.1.1",
+    "through2": "^2.0.3"
   }
 }

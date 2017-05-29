@@ -1,8 +1,11 @@
 const spawn = require('child_process').spawn
 const split = require('split2')
+const through = require('through2')
+const duplexify = require('duplexify')
 const dzen2 = require('dzen2')
 
 const defaultOptions = {
+  spawn: true,
   font: 'monospace',
   align: 'right'
 }
@@ -12,6 +15,21 @@ function padding (px, text) {
   return `^r(${px}x0)${text}^r(+${px}x0)`
 }
 
+// Create a `dzen2()` compatible stream that outputs to stdout instead.
+function stdio () {
+  const output = through(function (chunk, enc, cb) {
+    cb(null, chunk + '\n')
+  })
+  output.pipe(process.stdout)
+  const input = process.stdin
+
+  const stream = duplexify(output, input)
+  stream.exit = () => {
+    output.write('^exit()')
+  }
+  return stream
+}
+
 module.exports = (options = {}) => (bar) => {
   options = Object.assign({}, defaultOptions, options)
 
@@ -19,7 +37,9 @@ module.exports = (options = {}) => (bar) => {
     options.foreground = options.color
   }
 
-  const dz = dzen2(Object.assign(options))
+  const dz = options.spawn
+    ? dzen2(options)
+    : stdio(options)
 
   const separator = `^p(;_TOP)^bg(#666666)^r(1x0)^bg()`
 
