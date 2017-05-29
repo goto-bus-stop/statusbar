@@ -28,6 +28,9 @@ function Block ({ name, id, create }, bar) {
   let disposer
 
   function update (value) {
+    if (value === currentValue) {
+      return
+    }
     currentValue = value
     bar.update()
   }
