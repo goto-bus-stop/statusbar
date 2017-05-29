@@ -7,12 +7,20 @@ Blocks expose their contents using JSON objects following the [i3bar protocol](h
 
 ## Packages
 
-| Package | NPM | Version |
+| Package | npm | Version |
 |---------|-----|---------|
 | [statusbar](./packages/statusbar) | [statusbar](https://npm.im/statusbar) | ![](https://img.shields.io/npm/v/statusbar.svg) |
 | [block](./packages/block) | [@statusbar/block](https://npm.im/@statusbar/block) | ![](https://img.shields.io/npm/v/@statusbar/block.svg) |
+
+| Output | npm | Version |
+|---------|-----|---------|
 | [i3bar](./packages/i3bar) | [@statusbar/i3bar](https://npm.im/@statusbar/i3bar) | ![](https://img.shields.io/npm/v/@statusbar/i3bar.svg) |
 | [dzen](./packages/dzen) | [@statusbar/dzen](https://npm.im/@statusbar/dzen) | ![](https://img.shields.io/npm/v/@statusbar/dzen.svg) |
+| [lemonbar](./packages/lemonbar) | [@statusbar/lemonbar](https://npm.im/@statusbar/lemonbar) | ![](https://img.shields.io/npm/v/@statusbar/lemonbar.svg) |
+| [terminal](./packages/terminal) | [@statusbar/terminal](https://npm.im/@statusbar/terminal) | ![](https://img.shields.io/npm/v/@statusbar/terminal.svg) |
+
+| Block | npm | Version |
+|---------|-----|---------|
 | [battery](./packages/battery) | [@statusbar/battery](https://npm.im/@statusbar/battery) | ![](https://img.shields.io/npm/v/@statusbar/battery.svg) |
 | [date](./packages/date) | [@statusbar/date](https://npm.im/@statusbar/date) | ![](https://img.shields.io/npm/v/@statusbar/date.svg) |
 | [diskusage](./packages/diskusage) | [@statusbar/diskusage](https://npm.im/@statusbar/diskusage) | ![](https://img.shields.io/npm/v/@statusbar/diskusage.svg) |
