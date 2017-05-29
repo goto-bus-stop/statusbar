@@ -23,7 +23,7 @@ module.exports = block({
       getIp(options.device, 'v4')
     ]).then((results) => {
       const name = results[0]
-      const ip = results[1]
+      const ip = results[1] || 'No IP'
 
       b.update(`${name} ${ip}`)
     })

@@ -23,7 +23,7 @@ This module supports one additional option:
 
    ```bash
    npm install --global dupsh
-   dupsh 'statusbar' 'dzen2'
+   dupsh 'statusbar' 'dzen2 -dock'
    ```
 
 ## License
