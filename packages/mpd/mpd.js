@@ -10,7 +10,6 @@ module.exports = function mpd (opts, update) {
 
   sock.pipe(split()).on('data', (buf) => {
     const line = buf.toString()
-    console.log('mpd', line)
     processTags(line)
 
     if (didPlayerChange(line)) {
