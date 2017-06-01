@@ -24,6 +24,7 @@ Blocks expose their contents using JSON objects following the [i3bar protocol](h
 | [battery](./packages/battery) | [@statusbar/battery](https://npm.im/@statusbar/battery) | ![](https://img.shields.io/npm/v/@statusbar/battery.svg) |
 | [date](./packages/date) | [@statusbar/date](https://npm.im/@statusbar/date) | ![](https://img.shields.io/npm/v/@statusbar/date.svg) |
 | [diskusage](./packages/diskusage) | [@statusbar/diskusage](https://npm.im/@statusbar/diskusage) | ![](https://img.shields.io/npm/v/@statusbar/diskusage.svg) |
+| [mpd](./packages/mpd) | [@statusbar/mpd](https://npm.im/@statusbar/mpd) | ![](https://img.shields.io/npm/v/@statusbar/mpd.svg) |
 | [text](./packages/text) | [@statusbar/text](https://npm.im/@statusbar/text) | ![](https://img.shields.io/npm/v/@statusbar/text.svg) |
 | [volume](./packages/volume) | [@statusbar/volume](https://npm.im/@statusbar/volume) | ![](https://img.shields.io/npm/v/@statusbar/volume.svg) |
 | [whoami](./packages/whoami) | [@statusbar/whoami](https://npm.im/@statusbar/whoami) | ![](https://img.shields.io/npm/v/@statusbar/whoami.svg) |
