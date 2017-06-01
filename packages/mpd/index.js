@@ -24,6 +24,20 @@ module.exports = block({
       port: 6600,
       host: 'localhost'
     }, options)
+
+    if (typeof options.format === 'string') {
+      const format = options.format
+      options.format = (tags) => {
+        if (!tags) return ''
+        return format.replace(/\{(\w+)\}/g, (_, tag) => {
+          if (tag === 'duration' || tag === 'elapsed') {
+            return formatDuration(tags[tag] || 0)
+          }
+          return tags[tag] || '?'
+        })
+      }
+    }
+
     return options
   },
 
@@ -32,17 +46,8 @@ module.exports = block({
 
     b.update('')
     function ontags (tags) {
-      if (tags) {
-        let output = options.format.replace(/\{(\w+)\}/g, (_, tag) => {
-          if (tag === 'duration' || tag === 'elapsed') {
-            return formatDuration(tags[tag] || 0)
-          }
-          return tags[tag] || '?'
-        })
-        b.update(output)
-      } else {
-        b.update('')
-      }
+      let output = options.format(tags)
+      b.update(output)
     }
   },
 
