@@ -6,6 +6,7 @@ const dzen2 = require('dzen2')
 const defaultOptions = {
   spawn: true,
   events: true,
+  dock: true,
   font: 'monospace',
   align: 'right'
 }
