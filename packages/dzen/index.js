@@ -81,4 +81,8 @@ module.exports = (options = {}) => (bar) => {
   bar.on('dispose', () => {
     dz.exit()
   })
+
+  if (!options.spawn) {
+    dz.pipe(process.stdout)
+  }
 }
