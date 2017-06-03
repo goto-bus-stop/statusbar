@@ -1,6 +1,6 @@
 {
   "name": "@statusbar/battery",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Battery level block for Statusbar.",
   "main": "index.js",
   "repository": "goto-bus-stop/statusbar",

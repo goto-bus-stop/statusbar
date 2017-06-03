@@ -1,6 +1,6 @@
 {
   "name": "@statusbar/lemonbar",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "lemonbar integration for Statusbar.",
   "main": "index.js",
   "repository": "goto-bus-stop/statusbar",
