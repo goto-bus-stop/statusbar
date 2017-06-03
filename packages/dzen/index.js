@@ -1,11 +1,11 @@
 const spawn = require('child_process').spawn
-const split = require('split2')
 const through = require('through2')
 const duplexify = require('duplexify')
 const dzen2 = require('dzen2')
 
 const defaultOptions = {
   spawn: true,
+  events: true,
   font: 'monospace',
   align: 'right'
 }
@@ -44,21 +44,6 @@ module.exports = (options = {}) => (bar) => {
   const separator = `^p(;_TOP)^bg(#666666)^r(1x0)^bg()`
 
   /**
-   * Process an incoming action.
-   *
-   * Actions come in as button,block pairs, eg:
-   *
-   *   "1 1" is a left click on block #1
-   *   "2 7" is a right click on block #7
-   *
-   * @param {string} chunk
-   */
-  function oninput (chunk) {
-    const [button, id] = chunk.split(' ')
-    bar.input.write({ button: parseInt(button, 10), instance: id })
-  }
-
-  /**
    * Add an action handler to the given dzen2 string.
    *
    * @param {number} button
@@ -66,7 +51,7 @@ module.exports = (options = {}) => (bar) => {
    * @param {string} text
    */
   function addAction (button, block, text) {
-    return `^ca(${button},echo ${button} ${block.instance})${text}^ca()`
+    return `^ca(${button}, emit(button, ${button}, ${block.instance}))${text}^ca()`
   }
 
   /**
@@ -105,7 +90,9 @@ module.exports = (options = {}) => (bar) => {
   }
 
   bar.output.on('data', onoutput)
-  dz.pipe(split()).on('data', oninput)
+  dz.on('button', (button, id) => {
+    bar.input.write({ button: parseInt(button, 10), instance: id })
+  })
 
   bar.on('dispose', () => {
     dz.exit()
