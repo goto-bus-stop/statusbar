@@ -10,6 +10,15 @@ if (!config) {
   process.exit(1)
 }
 
+const configPath = path.resolve(process.cwd(), config)
+let configModule
+try {
+  configModule = require.resolve(configPath)
+} catch (err) {
+  console.error(`Could not find config file "${config}"`)
+  process.exit(1)
+}
+
 global.bar = require('.')()
 
-require(path.resolve(process.cwd(), config))
+require(configModule)
