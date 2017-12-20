@@ -8,6 +8,6 @@
   "license": "MIT",
   "dependencies": {
     "@statusbar/block": "^0.0.2",
-    "username": "^2.3.0"
+    "username": "^3.0.0"
   }
 }
