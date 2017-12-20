@@ -10,7 +10,7 @@ module.exports = block({
     }
 
     return Object.assign({
-      format: 'YYYY-MM-DD hh:mm:ss'
+      format: 'YYYY-MM-DD HH:mm:ss'
     }, options)
   },
 
