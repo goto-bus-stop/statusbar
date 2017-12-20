@@ -14,9 +14,9 @@ module.exports = block({
   run (b, options) {
     getBattery().then((list) => list[0]).then((battery) => {
       if (battery.state === 'charging') {
-        b.update(`🗲 ${battery.percentage} ${battery.timeToFull}`)
+        b.update(`🗲 ${battery.percentage} ${battery.timeToFull || 'UNK'}`)
       } else if (battery.state === 'discharging') {
-        b.update(`🔋 ${battery.percentage} ${battery.timeToEmpty}`)
+        b.update(`🔋 ${battery.percentage} ${battery.timeToEmpty || 'UNK'}`)
       } else if (battery.state === 'fully-charged') {
         b.update('🔋 100%')
       }
