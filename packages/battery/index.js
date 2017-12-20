@@ -20,6 +20,9 @@ module.exports = block({
       } else if (battery.state === 'fully-charged') {
         b.update('🔋 100%')
       }
+    }).catch((err) => {
+      b.background = 'red'
+      b.update(`battery: ${err.message}`)
     })
   }
 })
