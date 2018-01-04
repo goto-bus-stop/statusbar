@@ -25,6 +25,13 @@ module.exports = block({
       const name = results[0]
       const ip = results[1] || 'No IP'
 
+      if (!name) {
+        b.color = 'red'
+        b.update('Not connected')
+        return
+      }
+
+      b.color = null
       b.update(`${name} ${ip}`)
     })
   }
